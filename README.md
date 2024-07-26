@@ -56,7 +56,7 @@ Ejemplo: [./src/app/servicio-familiar.service.ts](./src/app/servicio-familiar.se
 Son los recursos externos y módulos de código que una aplicación necesita para funcionar correctamente. Estos recursos pueden incluir bibliotecas externas, módulos de Angular, servicios personalizados o componentes. Estras se gestionan a través de la inyección de dependencias.
 
 ```typescript
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MiServicio } from ' ./mi-servicio.service';
 @Component ({ 
   selector: 'app-mi-componente'
@@ -66,7 +66,7 @@ export class MiComponente implements OnInit {
   // Antes de Angular 15
   constructor (private _miServicio: MiServicio)
   // Después de Angular 15
-  private _miServicio = Inject(MiServicio)
+  private _miServicio = inject(MiServicio)
 
   ngOnInit(): void {...}
   //...
