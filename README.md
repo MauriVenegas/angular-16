@@ -1,27 +1,75 @@
-# Angular16
+# Angular 16
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.10.
 
-## Development server
+## 🛠️ Tecnologías
+### Input()
+Envia propiedades al hijo
+```typescript
+// Enviada desde el padre
+<app-hijo [mensajeRecibido]="mensajePadre" />
+// recibe desde el hijo
+// Recibe el 'username' desde el padre 'user'
+@Input() mensajeRecibido?: string
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Output()
+Envía propiedades al padre
+```typescript
+// Desde el hijo
+<label for="entrada">Escriba mensaje a enviar al padre</label>
+<br>
+<input type="text" [(ngModel)]="mensaje">
+<button (click)="enviarMensaje()">Enviar mensaje</button>
 
-## Code scaffolding
+// Crea un evento Emitter para enviar un valor el padre 
+@Output() mensajeEvent = new EventEmitter<string>()
+enviarMensaje() {
+    this.mensajeEvent.emit(this.mensaje)
+  }
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+//Desde el padre
+// Recibe el evento enviado desde el hijo
+<app-games (mensajeEvent)="getMensaje($event)" />
 
-## Build
+mensajeHijo?: string
+getMensaje(mensaje: string) {
+  this.mensajeHijo = mensaje
+}
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Servicios
+Se utiliza para organizar y compartir lógica, datos o funcionalidades comunes entre diferentes componentes, estos no estan relacionados directamente con la interfaz de usuario.
+```typescript
+import { Injectable } from '@angular/core
+@Injectable({
+  providedIn: 'root'
+})
+export class MiServicioService {
+  constructor () { }
+  // Métodos y lógica del servicio
+}
+```
+Ejemplo: [./src/app/servicio-familiar.service.ts](./src/app/servicio-familiar.service.ts)
 
-## Running unit tests
+### Dependencias
+Son los recursos externos y módulos de código que una aplicación necesita para funcionar correctamente. Estos recursos pueden incluir bibliotecas externas, módulos de Angular, servicios personalizados o componentes. Estras se gestionan a través de la inyección de dependencias.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```typescript
+import { Component, OnInit, Inject } from '@angular/core';
+import { MiServicio } from ' ./mi-servicio.service';
+@Component ({ 
+  selector: 'app-mi-componente'
+  templateUr1: "./mi-componente.component.html'
+})
+export class MiComponente implements OnInit {
+  // Antes de Angular 15
+  constructor (private _miServicio: MiServicio)
+  // Después de Angular 15
+  private _miServicio = Inject(MiServicio)
 
-## Running end-to-end tests
+  ngOnInit(): void {...}
+  //...
+}
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

@@ -1,0 +1,13 @@
+<h3>Componente hijo</h3>
+
+<p>Mensaje recivido del padre: <b>{{mensajeRecibido}}</b></p>
+
+<h4>Inremetar y deccemetar desde el hijo</h4>
+<button (click)="incrementar()">Incrementar +1</button>
+<button (click)="decrementar()">Decrementar -1</button>
+
+<br><br>
+<label for="entrada">Escriba mensaje a enviar al padre</label>
+<br>
+<input type="text" [(ngModel)]="mensaje">
+<button (click)="enviarMensaje()">Enviar mensaje</button>

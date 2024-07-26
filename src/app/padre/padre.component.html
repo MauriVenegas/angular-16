@@ -1,0 +1,16 @@
+<h3>Componente padre</h3>
+<p>Contador: <b>{{ valorContador }}</b></p>
+<button (click)="incrementar()">Incrementar +1</button>
+<button (click)="decrementar()">Decrementar -1</button>
+
+<br><br>
+<button (click)="enviarMensaje = true">Enviar mensaje al hijo</button>
+
+<app-hijo *ngIf="enviarMensaje" [mensajeRecibido]="mensajePadre" (mensajeEvent)="getMensaje($event)"
+  (incrementarEvent)="incrementar()" (decrementarEvent)="decrementar()" />
+
+<p *ngIf="mensajeHijo">Mensaje recibido desde el padre: <b>{{ mensajeHijo }}</b></p>
+
+<p>Nombre del hermnao grande: <b>{{hermanoGrande}}</b></p>
+<button (click)="saludar()">saludar</button>
+<button (click)="preguntar()">Preguntar por hijo</button>
