@@ -1,4 +1,7 @@
-<h3>Componente padre</h3>
+<!-- appEstiloHermanos: es directiva -->
+<h3 appEstiloHermanos>{{'Componente padre' | miPipePersonalizado}}</h3>
+<!-- date: es un pepline que viene incluido con Angular -->
+<h4>Fecha de hoy {{ fecha | date: 'dd/MM/yyyy HH:mm' }}</h4>
 <p>Contador: <b>{{ valorContador }}</b></p>
 <button (click)="incrementar()">Incrementar +1</button>
 <button (click)="decrementar()">Decrementar -1</button>
