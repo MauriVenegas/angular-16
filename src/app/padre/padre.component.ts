@@ -23,7 +23,6 @@ export class PadreComponent implements OnInit {
   mensajePadre: string = 'Mensaje desde el padre'
   enviarMensaje: boolean = false
   mensajeHijo?: string
-  fecha?: Date = new Date()
 
   incrementar() {
     this.valorContador++

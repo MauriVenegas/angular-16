@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## 🛠️ Tecnologías
 ### Input()
-Envia propiedades al hijo
+Envía propiedades al hijo
 
 Enviada desde el padre
 ```html
@@ -46,7 +46,7 @@ getMensaje(mensaje: string) {
 ```
 
 ### Servicios
-Se utiliza para organizar y compartir lógica, datos o funcionalidades comunes entre diferentes componentes, estos no estan relacionados directamente con la interfaz de usuario.
+Se utiliza para organizar y compartir lógica, datos o funcionalidades comunes entre diferentes componentes, estos no están relacionados directamente con la interfaz de usuario.
 
 ```
 ng generate service nombre-servicio
@@ -65,7 +65,7 @@ export class MiServicioService {
 Ejemplo: [./src/app/servicio-familiar.service.ts](./src/app/servicio-familiar.service.ts)
 
 ### Dependencias
-Son los recursos externos y módulos de código que una aplicación necesita para funcionar correctamente. Estos recursos pueden incluir bibliotecas externas, módulos de Angular, servicios personalizados o componentes. Estras se gestionan a través de la inyección de dependencias.
+Son los recursos externos y módulos de código que una aplicación necesita para funcionar correctamente. Estos recursos pueden incluir bibliotecas externas, módulos de Angular, servicios personalizados o componentes. Estas se gestionan a través de la inyección de dependencias.
 
 ```typescript
 import { Component, OnInit, inject } from '@angular/core';
@@ -86,7 +86,7 @@ export class MiComponente implements OnInit {
 ```
 
 ### Directivas
-Son funcinalidades para manipular el DOM, Angular posee directivas incorporadas y tambien la creación de directivas personalizdas.
+Son funcionalidades para manipular el DOM, Angular posee directivas incorporadas y también la creación de directivas personalizas.
 
 ```
 ng generate directive nombre-directiva
@@ -111,7 +111,7 @@ export class MiDirectivaDirective {
 ```
 
 ### Pipes
-Nos permiten formatear y transformar los datos de la vista. Ejemplo: formateo de fechas, números, textos a mayuscula, minuscula etc.
+Nos permiten formatear y transformar los datos de la vista. Ejemplo: formateo de fechas, números, textos a mayúscula, minúscula etc.
 
 ```
 ng generate pipe nombre-pipe
@@ -133,5 +133,8 @@ export class NombrePipe implements PipeTransform {
 <p>{{ texto | nombrePipe }}</p>
 ```
 
+### Errutamiento (Router)
+Es la forma de navegar entre componentes sin recargar la pagina (SPA).
 
-
+Archivo de rutas: [./src/app/app-routing.module.ts](./src/app/app-routing.module.ts)
+Llamado de rutas: [./src/app/app.component.html](./src/app/app.component.html)

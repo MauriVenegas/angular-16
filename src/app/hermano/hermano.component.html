@@ -1,6 +1,8 @@
 <!-- appEstiloHermanos: es directiva -->
-<h3 appEstiloHermanos>{{'Componente hermano' | miPipePersonalizado}}</h3>
+<h3 class="mt-3" appEstiloHermanos>{{'Componente hermano' | miPipePersonalizado}}</h3>
 
 <p>Nombre del hermnao pequeño: <b>{{hermanoPequeno}}</b></p>
-<button (click)="saludar()">saludar</button>
-<button (click)="preguntar()">Preeguntar por hijo</button>
+<section class="btn-group btn-group-sm" role="group">
+  <button type="button" class="btn btn-primary" (click)="saludar()">saludar</button>
+  <button type="button" class="btn btn-outline-primary" (click)="preguntar()">Preeguntar por hijo</button>
+</section>

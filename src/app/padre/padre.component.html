@@ -1,19 +1,24 @@
 <!-- appEstiloHermanos: es directiva -->
 <h3 appEstiloHermanos>{{'Componente padre' | miPipePersonalizado}}</h3>
 <!-- date: es un pepline que viene incluido con Angular -->
-<h4>Fecha de hoy {{ fecha | date: 'dd/MM/yyyy HH:mm' }}</h4>
 <p>Contador: <b>{{ valorContador }}</b></p>
-<button (click)="incrementar()">Incrementar +1</button>
-<button (click)="decrementar()">Decrementar -1</button>
+<section class="btn-group btn-group-sm" role="group">
+  <button type="button" class="btn btn-outline-primary" (click)="incrementar()">Incrementar +1</button>
+  <button type="button" class="btn btn-outline-primary" (click)="decrementar()">Decrementar -1</button>
+</section>
 
 <br><br>
-<button (click)="enviarMensaje = true">Enviar mensaje al hijo</button>
+<button type="button" class="btn btn-primary btn-sm" (click)="enviarMensaje = true">Enviar mensaje al
+  hijo</button>
+
+<br><br>
+<p>Nombre del hermnao grande: <b>{{hermanoGrande}}</b></p>
+<section class="btn-group btn-group-sm" role="group">
+  <button type="button" class="btn btn-primary" (click)="saludar()">saludar</button>
+  <button type="button" class="btn btn-outline-primary" (click)="preguntar()">Preguntar por hijo</button>
+</section>
 
 <app-hijo *ngIf="enviarMensaje" [mensajeRecibido]="mensajePadre" (mensajeEvent)="getMensaje($event)"
   (incrementarEvent)="incrementar()" (decrementarEvent)="decrementar()" />
 
-<p *ngIf="mensajeHijo">Mensaje recibido desde el padre: <b>{{ mensajeHijo }}</b></p>
-
-<p>Nombre del hermnao grande: <b>{{hermanoGrande}}</b></p>
-<button (click)="saludar()">saludar</button>
-<button (click)="preguntar()">Preguntar por hijo</button>
+<p *ngIf="mensajeHijo" class="mt-2">Mensaje recibido desde el padre: <b>{{ mensajeHijo }}</b></p>
