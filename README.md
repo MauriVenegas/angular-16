@@ -138,3 +138,17 @@ Es la forma de navegar entre componentes sin recargar la pagina (SPA).
 
 Archivo de rutas: [./src/app/app-routing.module.ts](./src/app/app-routing.module.ts)
 Llamado de rutas: [./src/app/app.component.html](./src/app/app.component.html)
+
+### Estructuras de control 
+ngIf, ngFor, ngStyle, ngClass, ng-container
+
+Ejemplos: 
+- [./src/app/products/products.component.html](./src/app/products/products.component.html)
+- [./src/app/product-detail/product-detail.component.html](./src/app/product-detail/product-detail.component.html)
+
+### Formularios
+Angular posee formularios basados en plantullas *FormsModule* y formularios rectivos *ReactiveFormsModule*.
+- **FormsModule**: Los normales indeando a traves del model *[(ngModel)]="user.name"*
+- **ReactiveFormsModule**: se declara un modelo especial que incluye acciones especiales como validadores, seteos, definiones de tipos, desabulitar campos, obtener el valor del formulario a medida que se relizen cambios etc. Ejemplo:
+  - [./src/app/contact/contact.component.ts](./src/app/contact/contact.component.ts)
+  - [./src/app/contact/contact.component.html](./src/app/contact/contact.component.html)
