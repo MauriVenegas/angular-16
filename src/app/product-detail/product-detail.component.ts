@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { productsList, Product } from '../products/procucts.mocks'
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -14,20 +15,24 @@ export class ProductDetailComponent implements OnInit {
   products: Product[] = productsList
   loading: boolean = true
   color: string = ''
-  constructor(private _rout: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     // Obtiene el parámetro pasado por la url
     setTimeout(() => {
-      this._rout.params.subscribe(params => {
+      this.route.params.subscribe(params => {
         this.product = this.products.find(
           product => product.id === parseInt(params['productId']
           ))
         this.color = this.product?.price as number > 5 ? 'red' : ''
         this.loading = false
       })
-    }, 1500)
+    }, 500)
 
+  }
+
+  goBack(): void {
+    this.location.back()
   }
 
 }

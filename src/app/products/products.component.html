@@ -14,8 +14,10 @@
       <th scope="row"> {{product.id}} </th>
       <td>{{product.name}}</td>
       <td [ngClass]="{'red-color': product.price > 5}">{{product.price | currency}}</td>
-      <button type="button" class="btn btn-sm btn-primary" [routerLink]="['/product', product.id]">Detalle
-      </button>
+      <td>
+        <button type="button" class="btn btn-sm btn-dark" [routerLink]="['/product', product.id]">Detalle
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

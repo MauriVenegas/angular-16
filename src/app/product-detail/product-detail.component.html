@@ -1,9 +1,10 @@
+<ng-container *ngIf="loading">
+  <h5>Loading...</h5>
+</ng-container>
+
 <ng-container *ngIf="!loading">
   <h1>Detalle de producto <b>{{product?.name}}</b></h1>
   <p>Precio: <b [ngStyle]="{'color': color}">{{product?.price | currency}}</b></p>
   <p *ngIf="product?.description">Descripción: <b>{{product?.description}}</b></p>
-</ng-container>
-
-<ng-container *ngIf="loading">
-  <h5>Loading...</h5>
+  <button (click)="goBack()" class="btn btn-outline-dark btn-sm" type="button">Volver</button>
 </ng-container>
