@@ -61,7 +61,24 @@ export class ContactComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.contactForm)
+    if (this.contactForm.invalid) {
+      // Marca los campos inválidos
+      this.contactForm.markAllAsTouched()
+    } else {
+      let form = {
+        name: '',
+        familyName: '',
+        tipoDni: '',
+        dni: '',
+        email: '',
+      }
+      form = { ...this.contactForm.value }
+      form.name = this.contactForm.get('name')?.value
+      form.familyName = this.contactForm.get('familyName')?.value
+
+      console.log(form)
+      // this.contactForm.reset()
+    }
   }
 
 }
