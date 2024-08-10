@@ -152,3 +152,126 @@ Angular posee formularios basados en plantullas *FormsModule* y formularios rect
 - **ReactiveFormsModule**: se declara un modelo especial que incluye acciones especiales como validadores, seteos, definiones de tipos, desabulitar campos, obtener el valor del formulario a medida que se relizen cambios etc. Ejemplo:
   - [./src/app/contact/contact.component.ts](./src/app/contact/contact.component.ts)
   - [./src/app/contact/contact.component.html](./src/app/contact/contact.component.html)
+
+### Ciclos de vida
+Mas usadas(*)
+- ***ngOnChanges**: Se dispara cuando los datos de entrada (@lnput) del componente cambian (escuchas los cambios que haga el padre).
+```typescript
+export class MiComponente implements OnChanges {
+  // Método ngOnChanges se llama cuando hay cambios en las propiedades de entrada
+  ngOnChanges (changes: SimpleChanges): void {
+    // Verifica si la propiedad de entrada 'nombreInput' ha cambiado
+    if (changes.nombreInput) {
+      this.nombre = changes.nombreInput.currentValue;
+    }
+  }
+}
+```
+- ***ngOnlnit**: Ocurre después de que Angular ha inicializado todas las propiedades del componente.
+```typescript
+export class MiComponente implements OnInit {
+  nombre: string;
+  // El método ngOnInit se llama después que Angular ha inicializado todas las propiedades del componente.
+  ngOnInit(): void {
+    this.nombre = "Usuario':
+    console.log( 'Hola, ${this.nombre}! El componente se ha inicializado')
+  }
+}
+```
+
+- **ngDoCheck**: Se ejecuta durante cada detección de cambios y permite realizar acciones de verificación personalizadas.
+```typescript
+export class MiComponente implements DoCheck {
+  // Método ngDoCheck se llama durante cada detección de cambios
+  ngDoCheck(): void {
+    console. log('Se está ejecutando ngDoCheck');
+    // Puedes realizar acciones de verificación personalizadas aquí
+  }
+}
+```
+- **ngAfterContentInit**: Ocurre después de que Angular haya proyectado el contenido en el componente.
+```typescript
+export class MiComponente implements AfterContentInit {
+  // ContentChild para acceder a un elemento dentro ¿% contenido proyectado
+  @ContentChild( 'nombreElemento') nombreElemento: ElementRef;
+  // Método ngAfterContentInit se llama después de que Angular haya proyectado el contenido
+  ngAfterContentInit(): void {
+    // Realizar acciones después de que el contenido haya sido inicializado
+    if
+    (this.nombreElemento) {
+      console.log ('Se ha encontrado un elemento con el nombre 'nombreElemento'.')
+    }
+  }
+}
+```
+
+- **ngAfterContentChecked**: Se ejecuta después de cada verificación del contenido proyectado.
+```typescript
+export class MiComponente implements AfterContentChecked {
+  // ContentChild para acceder a un elemento dentro del contenido proyectado
+  @ContentChild('nombreElemento') nombreElemento: ElementRef;
+  // Método ngAfterContentChecked se llama después de cada verificación del contenido proyectado
+  ngAfterContentChecked(): void {
+    // Realizar acciones después de cada verificación del contenido
+    if (this.nombreElemento) {
+      console. log('Se ha verificado el contenido y se ha encontrado un elemento con el nombre 'nombreElemento'.');
+    }
+  }
+}
+```
+
+- **ngAfterViewlnit**: Ocurre después de que Angular haya inicializado las vistas del componente.
+```typeScript
+export class MiComponente implements AfterViewInit {
+  // Viewchild para acceder a un elemento en la vista del componente
+  @ViewChild('miParrafo') miParrafo: ElementRef;
+  // Método ngAfterViewInit se llama después de que Angular haya inicializado las vistas del componente
+  ngAfterViewInit(): void {
+    // Realizar acciones después de que la vista haya sido inicializada
+    if (this.miParrafo) {
+      console. log('Se ha inicializado la vista y se ha encontrado un párrafo: $(this.miParrafo.nativeElement.textContent}');
+    }
+  }
+}
+```
+
+- **ngAfterViewChecked**: Se ejecuta después de cada verificación de las vistas del componente.
+```typescript
+export class MiComponente implements AfterViewChecked {
+  mensaje: string = '¡Hola, mundo!';
+
+  // ViewChild para acceder a un elemento en la vista del componente
+  @ViewChild ('miParrafo') miParrafo: ElementRef;
+
+  // Método ngAfterViewChecked se llama después de cada verificación de las vistas del componente
+  ngAfterViewChecked(): void {
+    // Realizar acciones después de cada verificación de las vistas
+    if (this.miParrafo) {
+      console. log( 'Se ha verificado la vista y el contenido del párrafo es: $(this.miParrafo.nativeElement.textContent}');
+    }
+  }
+}
+```
+
+- ***ngOnDestroy**: Se dispara justo antes de que Angular destruya el componente.
+```typescript
+export class MiComponente implements OnDestroy {
+  // Ejemplo de suscripción a un observable 
+  private subscription: Subscription;
+  
+  constructor () {
+    // Simulación de suscripción a un observable
+    this.subscription = new Subscription();
+  }
+  
+  // El Método ngOnDestroy se llama justo antes de que Angular destruya el componente
+  ngOnDestroy(): void {
+    // Realizar limpieza, como describirse de observables o liberar recursos
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      console. log('Se ha desuscrito de la suscripción en ngOnDestroy. ');
+    }
+  }
+}
+```
+
