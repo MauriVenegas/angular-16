@@ -1,10 +1,16 @@
-<ng-container *ngIf="loading">
-  <h5>Loading...</h5>
-</ng-container>
-
-<ng-container *ngIf="!loading">
-  <h1>Detalle de producto <b>{{product?.name}}</b></h1>
-  <p>Precio: <b [ngStyle]="{'color': color}">{{product?.price | currency}}</b></p>
-  <p *ngIf="product?.description">Descripción: <b>{{product?.description}}</b></p>
-  <button (click)="goBack()" class="btn btn-outline-dark btn-sm" type="button">Volver</button>
-</ng-container>
+<div class="center">
+  <ng-container *ngIf="loading">
+    <p>Loading...</p>
+  </ng-container>
+  <ng-container *ngIf="!loading">
+    <div class="card" style="max-width: 20rem;">
+      <div class="card-body">
+        <img src="{{product?.image}}" alt="{{product?.title}}" class="img-fluid mb-3">
+        <h5 class="card-title">{{product?.title}}</h5>
+        <h6>Precio: <b [ngStyle]="{'color': color}">{{product?.price | currency}}</b></h6>
+        <p *ngIf="product?.description" class="card-text">Descripción: <b>{{product?.description}}</b></p>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<button (click)="goBack()" class="btn btn-outline-dark btn-sm mt-4" type="button">Volver</button>

@@ -1,23 +1,29 @@
-<h1>Clean products</h1>
+<h1>List of products</h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Product</th>
-      <th scope="col">Price</th>
-      <th scope="col">Detail</th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-    <tr *ngFor="let product of products">
-      <th scope="row"> {{product.id}} </th>
-      <td>{{product.name}}</td>
-      <td [ngClass]="{'red-color': product.price > 5}">{{product.price | currency}}</td>
-      <td>
-        <button type="button" class="btn btn-sm btn-dark" [routerLink]="['/product', product.id]">Detalle
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<ng-container *ngIf="loading">
+  <p>Loading...</p>
+</ng-container>
+
+<ng-container *ngIf="!loading && products.length > 0">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Price</th>
+        <th scope="col">Detail</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr *ngFor="let product of products">
+        <th scope="row"> {{product.id}} </th>
+        <td>{{product.title}}</td>
+        <td [ngClass]="{'red-color': product.price > 100}">{{product.price | currency}}</td>
+        <td>
+          <button type="button" class="btn btn-sm btn-dark" [routerLink]="['/product', product.id]">View detail
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>

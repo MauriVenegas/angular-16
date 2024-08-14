@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { productsList, Product } from '../products/procucts.mocks'
+import { ActivatedRoute, Params } from '@angular/router';
+// import { productsList, Product } from '../products/products.mocks'
 import { Location } from '@angular/common';
+import { IProduct } from '../models/product.model';
+import { ApiService } from '../services/api.service';
 
 
 @Component({
@@ -11,28 +13,38 @@ import { Location } from '@angular/common';
 })
 export class ProductDetailComponent implements OnInit {
 
-  product?: Product
-  products: Product[] = productsList
+  product?: IProduct
+  products: IProduct[] = []
   loading: boolean = true
   color: string = ''
-  constructor(private route: ActivatedRoute, private location: Location) { }
+  constructor(private _route: ActivatedRoute, private _location: Location, private _apiService: ApiService) { }
 
   ngOnInit(): void {
-    // Obtiene el parámetro pasado por la url
-    setTimeout(() => {
-      this.route.params.subscribe(params => {
-        this.product = this.products.find(
-          product => product.id === parseInt(params['productId']
-          ))
-        this.color = this.product?.price as number > 5 ? 'red' : ''
-        this.loading = false
-      })
-    }, 500)
+    this._apiService.getAllProducts().subscribe((data: IProduct[]) => {
+      this.products = data
+    })
 
+    // Obtiene el parámetro pasado por la url
+    this._route.params.subscribe({
+      next: (params: Params) => {
+        const id: number = Number(params['productId'])
+        this._apiService.getProduct(id).subscribe({
+          next: (data: IProduct) => {
+            this.product = data
+            this.color = this.product?.price as number > 100 ? 'red' : ''
+            this.loading = false
+          },
+          error: (error: any) => {
+            console.log(error)
+            this.loading = false
+          },
+        })
+      }
+    })
   }
 
   goBack(): void {
-    this.location.back()
+    this._location.back()
   }
 
 }

@@ -275,3 +275,8 @@ export class MiComponente implements OnDestroy {
 }
 ```
 
+### APIs y servicios
+- Agregar *HttpClientModule* al archivo: [./src/app/app.module.ts](./src/app/app.module.ts)
+- Crear sevicios: [./src/app/services/api.service.ts](./src/app/services/api.service.ts)
+- Creacion de interface [./src/app/models/product.model.ts](./src/app/models/product.model.ts)
+- consumir el servicio: [./src/app/products/products.component.ts](./src/app/products/products.component.ts) y [./src/app/product-detail/product-detail.component.ts](./src/app/product-detail/product-detail.component.ts)
