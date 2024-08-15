@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICategosy, IProduct } from '../models/product.model';
 
@@ -9,7 +9,9 @@ import { ICategosy, IProduct } from '../models/product.model';
 export class ApiService {
 
   private baseURL = 'https://fakestoreapi.com/products'
-  constructor(private _httpClient: HttpClient) { }
+  // constructor(private _httpClient: HttpClient) { }
+  // Una alternativa para inyectar una dependencia sin usar el constructor
+  private _httpClient = inject(HttpClient)
 
   // HttpClient retorna un Observable el cual permite el manejo de datos, errores y finalizar el manejo del observable
   public getAllProducts(sort?: string): Observable<IProduct[]> {

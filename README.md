@@ -280,3 +280,47 @@ export class MiComponente implements OnDestroy {
 - Crear sevicios: [./src/app/services/api.service.ts](./src/app/services/api.service.ts)
 - Creacion de interface [./src/app/models/product.model.ts](./src/app/models/product.model.ts)
 - consumir el servicio: [./src/app/products/products.component.ts](./src/app/products/products.component.ts) y [./src/app/product-detail/product-detail.component.ts](./src/app/product-detail/product-detail.component.ts)
+
+### Inyección de dependencias 
+```typeScript
+// Antes
+constructor(private _httpClient: HttpClient) {}
+// nueva forma de inyección de dependencias
+private _httpClient = inject(HttpClient)
+```
+
+### Signals
+Gestiona cambios de estado de la aplicación, es decir permite computar las variables. Ejemplo:
+set: Cambia el valor de una variable signal
+```typescript
+const x = signal<number>(2)
+const y = signal<number>(3)
+const z = computed(() => x() + y())
+console.log(z()) // Output: 5
+x.set(4)
+console.log(z()) // Output: 7
+```
+update: cambia el valor de una variale signal usando el valor anterior
+```typescript
+const contador = signal<number>(0)
+contador.update(valor => valor + 1)
+console.log(contador()) // Output: 1
+array = signal<array<number>>([1, 2, 3])
+array.update(valor => [...valor, 4])
+```
+mutate: para cambiar unn valor en espesifico 
+```typescript
+const usuarios = signal([{nombre: 'Mauricio', tecnologia: 'Angular'}])
+usuarios.mutate(usuario => { 
+  usuario[0].tecnologia = 'Angular con signal' 
+})
+```
+effect: permite escuchar los cambios de los signals que tenga dentro
+```typescript
+const contador = signal(0)
+effect(()=> {
+  console.log(`El contador ha cambiado ${contador()}`)
+})
+```
+
+
