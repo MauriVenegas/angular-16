@@ -323,4 +323,37 @@ effect(()=> {
 })
 ```
 
+### Novedades Angular 17
+|Angular 16          | Angular 17 |
+|--------------------|------------|
+|*ngIf               |@if @else   |
+|ngSwich *ngSwichCase|@swich @case|
+|*ngFor              |@for @empty |
+
+#### Carga diferida (lazy load)
+Prioriza el orden de caraga de los elementos.
+```typescript
+// Carga de elementos a medida que se van visualizando
+@defer (on viewport){
+  ...
+}
+// Permite mostrar un mensaje o elemento mientras se carga el archivo
+@loading {
+  Cargando...
+}
+// Erro el cargar 
+@error {
+  Error al cargar el archivo
+}
+// Guarda un espacio mientras se carga el elemento y permite mostrar una imagen o skeleton 
+@placeholder {
+  <img src="placeholder.jpg" alt="Imagen de carga">
+}
+```
+
+#### Server Side Rendering (SSR)
+Angular 17 permite renderizar la aplicación en el servidor.
+```
+ng new my-app --ssr
+```
 
